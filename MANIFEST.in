@@ -1,0 +1,2 @@
+include src/pssmpro/data/example.fasta
+include src/pssmpro/data/pssm_files/*

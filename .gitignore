@@ -1,0 +1,10 @@
+**/.idea
+**/__pycache__
+.DS_Store
+**/tmp
+README.ipynb
+build
+dist
+src/pssmpro.egg-info
+**/.ipynb_checkpoints
+.git/
