@@ -79,10 +79,21 @@ create_pssm_profile(protein_sequence_file, output_dir, psiblast_executable_path,
 17. rpssm
 18. s_fpssm
 19. smoothed_pssm
-20. tpc
+20. tpc_pssm
 21. tri_gram_pssm
 
-**For a detailed description of the features, refer to the Supplementary Documents of the paper (link to be added)**
+For a detailed description of the features, refer to the Supplementary Documents of the paper (link to be added). 
+Other protein sequence encoding  
+
+**NB: *pssmpro* is based on POSSUM [link](https://academic.oup.com/bioinformatics/article/33/17/2756/3813283). The code 
+has been adapted to work with python version 3 and above.**
+
+## similar modules to encode protein sequences
+
+Other modules that can be used to generate numerical encoding of protein sequences are:
+
+ 1. *ngrampro* [link](https://pypi.org/project/ngrampro/)
+ 2. *ifeatpro* [link](https://pypi.org/project/ifeatpro/)
 
 
 ```python

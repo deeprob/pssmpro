@@ -6,7 +6,7 @@ import itertools
 # Global Variable, all available encoders
 all_encoders = ['aac_pssm', 'aadp_pssm', 'aatp', 'ab_pssm', 'd_fpssm', 'dp_pssm', 'dpc_pssm', 'edp', 'eedp',
                 'k_separated_bigrams_pssm', 'medp', 'pse_pssm', 'pssm_ac', 'pssm_cc',
-                'pssm_composition', 'rpm_pssm', 'rpssm', 's_fpssm', 'smoothed_pssm', 'tpc', 'tri_gram_pssm']
+                'pssm_composition', 'rpm_pssm', 'rpssm', 's_fpssm', 'smoothed_pssm', 'tpc_pssm', 'tri_gram_pssm']
 
 
 # pssm input file reading functions
@@ -599,7 +599,7 @@ def eedp(input_matrix):
     return eedp_vector[0]
 
 
-def tpc(input_matrix):
+def tpc_pssm(input_matrix):
     """
     TPC feature encoder
     :param input_matrix:
@@ -719,7 +719,7 @@ def aatp(input_matrix):
     :return:
     """
     aac_pssm_matrix = aac_pssm(input_matrix)
-    tpc_matrix = tpc(input_matrix)
+    tpc_matrix = tpc_pssm(input_matrix)
     aac_pssm_matrix = np.array(aac_pssm_matrix)
     tpc_matrix = np.array(tpc_matrix)
     aatp_matrix = np.hstack((aac_pssm_matrix, tpc_matrix))
@@ -748,9 +748,8 @@ def get_feature(pssm_dir, algo_type="aac_pssm", store_dir="./"):
     protein_names = [re.sub(".pssm", "", pf.name) for pf in os.scandir(pssm_dir) if pf.name.endswith(".pssm")]
 
     if store_dir:
-        output_dir_name = os.path.join(store_dir, "tmp/")
-        os.makedirs(output_dir_name, exist_ok=True)
-        with open(os.path.join(output_dir_name, algo_type+".csv"), "w") as f:
+        os.makedirs(store_dir, exist_ok=True)
+        with open(os.path.join(store_dir, algo_type+".csv"), "w") as f:
             for pn, feats in zip(protein_names, features):
                 f.write(pn + ",")
                 f.write(",".join(list(map(str, feats))))
@@ -796,5 +795,5 @@ def create_pssm_profile(seq_file, out_dir, psiblast_exec, database_prefix, num_t
 
 
 if __name__ == "__main__":
-    zip_list = get_all_features("./data/pssm_files", store_dir="")
+    zip_list = get_all_features("./data/pssm_files", store_dir="./data/tmp")
     print(list(zip_list[0]))
