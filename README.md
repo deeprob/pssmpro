@@ -1,3 +1,7 @@
+
+
+[![DOI](https://zenodo.org/badge/371429755.svg)](https://zenodo.org/badge/latestdoi/371429755)
+
 # Tutorial
 
 ## Generating PSSM profiles
